@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pokemon Site</title>
+
+  <!-- Retro pixel font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #fff8dc;
+      font-family: "Press Start 2P", cursive;
+    }
+
+    .container {
+      position: relative;
+      text-align: center;
+    }
+
+    #pokemon {
+      width: 260px;
+      cursor: pointer;
+      image-rendering: pixelated;
+    }
+
+    /* lighter pink here */
+    .click-text {
+      margin-top: 18px;
+      font-size: 14px;
+      color: #ff8fcf;
+      text-shadow: 2px 2px 0 #ffffff;
+    }
+
+    .bubble {
+      position: absolute;
+      top: -95px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: white;
+      border: 3px solid black;
+      border-radius: 18px;
+      padding: 14px 18px;
+      font-size: 16px;
+      display: none;
+      white-space: nowrap;
+      box-shadow: 4px 4px 0 black;
+    }
+
+    .bubble::after {
+      content: "";
+      position: absolute;
+      bottom: -16px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 16px 12px 0 12px;
+      border-style: solid;
+      border-color: black transparent transparent transparent;
+    }
+
+    .bubble::before {
+      content: "";
+      position: absolute;
+      bottom: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 12px 9px 0 9px;
+      border-style: solid;
+      border-color: white transparent transparent transparent;
+      z-index: 1;
+    }
+
+    .show {
+      display: block;
+    }
+
+    .bounce {
+      animation: bounce 0.5s;
+    }
+
+    @keyframes bounce {
+      0%   { transform: translateY(0); }
+      25%  { transform: translateY(-28px); }
+      50%  { transform: translateY(0); }
+      75%  { transform: translateY(-14px); }
+      100% { transform: translateY(0); }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div id="bubble" class="bubble">Hi Ricky</div>
+
+    <!-- change only if your file isn’t .png -->
+    <img id="pokemon" src="pokemon.png" alt="Pokemon">
+
+    <div class="click-text">click me &lt;3</div>
+  </div>
+
+  <script>
+    const pokemon = document.getElementById("pokemon");
+    const bubble = document.getElementById("bubble");
+
+    pokemon.onclick = function () {
+      bubble.classList.add("show");
+
+      pokemon.classList.remove("bounce");
+      void pokemon.offsetWidth;
+      pokemon.classList.add("bounce");
+    };
+  </script>
+</body>
+</html>
